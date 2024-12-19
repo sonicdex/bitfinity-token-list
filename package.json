@@ -4,6 +4,7 @@
     "name": "Sonic",
     "url": "https://sonic.ooo/"
   },
+  "type": "module",
   "description": "📚 The Token Lists specification",
   "version": "1.0.0",
   "license": "MIT",
@@ -11,26 +12,21 @@
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
-    "src"
+    "src",
+    "scripts",
+    "test"
   ],
   "engines": {
     "node": ">=10"
   },
-  "repository": {
-    "url": "https://github.com/sonicdex/bitfinity-token-list",
-    "type": "git"
-  },
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
-    "postbuild": "cp src/tokenlist.schema.json dist/tokenlist.schema.json",
     "test": "tsdx test",
-    "lint": "tsdx lint src/",
-    "prepublishOnly": "yarn test && yarn build"
-  },
-  "publishConfig": {
-    "access": "public",
-    "provenance": true
+    "lint": "tsdx lint src scripts test",
+    "prepublishOnly": "yarn validate && yarn build",
+    "validate": "tsx scripts/validate-token-list.ts",
+    "publish": "tsx scripts/publish-token-list.ts"
   },
   "peerDependencies": {},
   "husky": {
@@ -47,10 +43,12 @@
   "module": "dist/token-lists.esm.js",
   "devDependencies": {
     "ajv": "^8.6.1",
-    "ajv-formats": "^2.1.0",
+    "ajv-formats": "^3.0.1",
     "husky": "^4.2.5",
+    "ts-node": "^10.9.2",
     "tsdx": "^0.14.1",
     "tslib": "^2.0.0",
+    "tsx": "^4.19.2",
     "typescript": "^4.3.5"
   }
 }
