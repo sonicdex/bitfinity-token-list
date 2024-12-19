@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "token-list",
+  "$id": "https://raw.githubusercontent.com/sonicdex/bitfinity-token-list/main/src/tokenlist.schema.json",
   "title": "Sonic-Bitfinity Token List",
   "description": "Schema for lists of tokens compatible with the Sonic App",
   "definitions": {
