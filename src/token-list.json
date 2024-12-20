@@ -27,6 +27,13 @@
       "name": "Motoko",
       "symbol": "MOTOKO",
       "logoURI": "https://raw.githubusercontent.com/infinity-swap/token-lists/main/logos/motoko.png"
+    },
+    {
+      "address": "0xb6cf275997444876916c11aebf2a0c33ff37f479",
+      "decimals": 8,
+      "name": "Test2",
+      "symbol": "TEST2",
+      "logoURI": "https://raw.githubusercontent.com/infinity-swap/token-lists/main/logos/motoko.png"
     }
   ]
 }
