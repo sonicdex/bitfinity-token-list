@@ -26,6 +26,7 @@
     "lint": "tsdx lint src scripts test",
     "prepublishOnly": "yarn validate && yarn build",
     "validate": "tsx scripts/validate-token-list.ts",
+    "versionUpgrade": "tsx scripts/upgrade-version.ts",
     "publish": "tsx scripts/publish-token-list.ts"
   },
   "peerDependencies": {},
