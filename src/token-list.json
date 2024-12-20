@@ -20,6 +20,13 @@
       "name": "Sonic",
       "symbol": "SONIC",
       "logoURI": "https://cdn.sonic.ooo/v3/token_images/0x491016bf872d35a798c601d53442775c621bf91a.webp"
+    },
+    {
+      "address": "0x491016bf872d35a798c601d53442775c621bf91a",
+      "decimals": 8,
+      "name": "New Test token",
+      "symbol": "TEST",
+      "logoURI": "https://cdn.sonic.ooo/v3/token_images/0x491016bf872d35a798c601d53442775c621bf91a.webp"
     }
   ]
 }
