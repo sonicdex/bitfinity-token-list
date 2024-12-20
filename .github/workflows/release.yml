@@ -24,7 +24,10 @@ jobs:
       # Step 4: Fetch previous token-list.json (before the merge)
       - name: Fetch Previous Commit's token-list.json
         run: |
-          git show HEAD~1:src/token-list.json > src/base-token-list.json
+            echo "Current Git branch: $(git rev-parse --abbrev-ref HEAD)"
+            echo "Fetching token-list.json from previous commit:"
+            git show HEAD~1:src/token-list.json
+            git show HEAD~1:src/token-list.json > src/base-token-list.json
 
       - name: Calculate Version Upgrade
         run: yarn versionUpgrade
