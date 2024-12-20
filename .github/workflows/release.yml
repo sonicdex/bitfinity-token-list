@@ -26,18 +26,19 @@ jobs:
         run: |
             echo "Current Git branch: $(git rev-parse --abbrev-ref HEAD)"
             echo "Fetching token-list.json from previous commit:"
+            git log
             git show HEAD~1:src/token-list.json
             git show HEAD~1:src/token-list.json > src/base-token-list.json
 
-      - name: Calculate Version Upgrade
-        run: yarn versionUpgrade
+    #   - name: Calculate Version Upgrade
+    #     run: yarn versionUpgrade
 
-      - name: Commit and Push Version Update
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/token-list.json
-          git commit -m "chore: bump token list version"
-          git push
+    #   - name: Commit and Push Version Update
+    #     run: |
+    #       git config user.name "github-actions[bot]"
+    #       git config user.email "github-actions[bot]@users.noreply.github.com"
+    #       git add src/token-list.json
+    #       git commit -m "chore: bump token list version"
+    #       git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
