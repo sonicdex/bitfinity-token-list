@@ -1,13 +1,13 @@
-name: Validate PR
+name: Upgrade Version After Merge
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
 jobs:
-  validate:
-    runs-on: ubuntu-20.04
+  version-upgrade:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -16,10 +16,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 16
 
       - name: Install dependencies
         run: yarn install
 
-      - name: Validate token list
-        run: yarn validate
+      - name: Calculate and Update Version
+        run: |
+          yarn validate
+          node ./scripts/upgrade-version.js
