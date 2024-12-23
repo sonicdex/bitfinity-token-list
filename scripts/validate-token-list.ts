@@ -44,7 +44,8 @@ const validateList = async (tokens: TokenInfo[]) => {
   const schema = JSON.parse(await readfs.readFile(schemaPath, 'utf8'));
   const validate = ajv.compile(schema);
   const valid = validate(tokenListWithUpdated);
-  console.log(`[INFO] IsValid: ${valid}. \n Errors ${validate.errors}`);
+  console.log(`[INFO] IsValid: ${valid}. \n Errors : `);
+  console.log(validate.errors);
   return valid;
 };
 
