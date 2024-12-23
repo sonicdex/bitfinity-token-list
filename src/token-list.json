@@ -1,33 +1,12 @@
 {
   "name": "Sonic Bitfinity token list",
-  "timestamp": "2024-12-23T14:00:14.507Z",
+  "timestamp": "2024-12-23T14:03:45.714Z",
   "version": {
-    "major": 3,
+    "major": 4,
     "minor": 0,
     "patch": 0
   },
   "tokens": [
-    {
-      "address": "0x600717ad96d63fbde59f7aa0555ba1575ee54d8e",
-      "decimals": 8,
-      "name": "Boom",
-      "symbol": "BOOM",
-      "logoURI": "https://raw.githubusercontent.com/infinity-swap/token-lists/main/logos/boom.png"
-    },
-    {
-      "address": "0x09eb14f75ef3b3adf747e56fee045c7d81dd6f0f",
-      "decimals": 8,
-      "name": "Chat",
-      "symbol": "CHAT",
-      "logoURI": "https://raw.githubusercontent.com/infinity-swap/token-lists/main/logos/chat.png"
-    },
-    {
-      "address": "0x5f8f14ab8fcd254ba6f404aacb587a28355cb545",
-      "decimals": 8,
-      "name": "Dogmi",
-      "symbol": "DOGMI",
-      "logoURI": "https://raw.githubusercontent.com/octopus-network/omnity-token-imgs/refs/heads/main/DOGMI.png"
-    },
     {
       "address": "0x51ccde9ca75d95bb55ece1775fcbff91324b18a6",
       "decimals": 8,
