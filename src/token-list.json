@@ -1,12 +1,19 @@
 {
   "name": "Sonic Bitfinity token list",
-  "timestamp": "2024-12-18T00:00:00Z",
+  "timestamp": "2024-12-23T13:39:19.555Z",
   "version": {
     "major": 1,
-    "minor": 0,
+    "minor": 1,
     "patch": 0
   },
   "tokens": [
+    {
+      "address": "0x600717ad96d63fbde59f7aa0555ba1575ee54d8e",
+      "decimals": 8,
+      "name": "Boom",
+      "symbol": "BOOM",
+      "logoURI": "https://raw.githubusercontent.com/infinity-swap/token-lists/main/logos/boom.png"
+    },
     {
       "address": "0x51ccde9ca75d95bb55ece1775fcbff91324b18a6",
       "decimals": 8,
