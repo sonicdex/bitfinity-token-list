@@ -1,0 +1,7 @@
+{
+  "address": "0x51ccde9ca75d95bb55ece1775fcbff91324b18a6",
+  "decimals": 8,
+  "name": "Example Token",
+  "symbol": "EXMP",
+  "logoURI": "https://raw.githubusercontent.com/sonicdex/bitfinity-token-list/main/test/examples/ExampleToken/logo.webp"
+}
