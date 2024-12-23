@@ -1,8 +1,27 @@
-import { TokenList } from '@src/types';
-import { promises as fs } from 'fs';
+import { TokenInfo, TokenList } from '@src/types';
+import fs, { promises as readfs } from 'fs';
+import path from 'path';
 import { minVersionBump } from './min-version-bump';
 import { nextVersion } from './next-version';
 import { isVersionUpdate } from './is-version-update';
+
+const parseTokens = (): TokenInfo[] => {
+  const tokensDir = './src/tokens';
+  const tokenList: TokenInfo[] = [];
+
+  const tokenFolders = fs.readdirSync(tokensDir);
+
+  tokenFolders.forEach(folder => {
+    const metadataPath = path.join(tokensDir, folder, 'metadata.json');
+
+    if (fs.existsSync(metadataPath)) {
+      const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf-8'));
+      tokenList.push(metadata);
+    }
+  });
+
+  return tokenList;
+};
 
 const updateVersionOnMerge = async () => {
   const baseTokenListPath = './src/base-token-list.json';
@@ -10,16 +29,13 @@ const updateVersionOnMerge = async () => {
 
   try {
     const baseTokenJson: TokenList = JSON.parse(
-      await fs.readFile(baseTokenListPath, 'utf8')
+      await readfs.readFile(baseTokenListPath, 'utf8')
     );
-    const updatedTokenJson: TokenList = JSON.parse(
-      await fs.readFile(updatedTokenListPath, 'utf8')
-    );
+    const updatedTokens: TokenInfo[] = parseTokens();
 
     const baseVersion = baseTokenJson.version;
 
     const baseTokens = baseTokenJson.tokens;
-    const updatedTokens = updatedTokenJson.tokens;
 
     const versionUpgrade = minVersionBump(baseTokens, updatedTokens);
     const newVersion = nextVersion(baseVersion, versionUpgrade);
@@ -31,10 +47,12 @@ const updateVersionOnMerge = async () => {
     if (isVersionUpdate(baseVersion, newVersion)) {
       // updated
       const tokenListWithNewVersion: TokenList = {
-        ...updatedTokenJson,
+        ...baseTokenJson,
+        timestamp: new Date().toISOString(),
+        tokens: updatedTokens,
         version: newVersion,
       };
-      await fs.writeFile(
+      await readfs.writeFile(
         updatedTokenListPath,
         JSON.stringify(tokenListWithNewVersion, null, 2) + '\n'
       );
