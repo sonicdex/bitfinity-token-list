@@ -1,42 +1,79 @@
+import fs from 'fs';
+import { promises as readfs } from 'fs';
+
+import path from 'path';
 import Ajv from 'ajv';
-import { promises as fs } from 'fs';
 import addFormats from 'ajv-formats';
 import { TokenInfo, TokenList } from '@src/types';
 
-const schemaPath = './src/tokenlist.schema.json';
 const tokenListPath = './src/token-list.json';
+const schemaPath = './src/tokenlist.schema.json';
 
-const validateUniqueAddresses = (tokens: TokenInfo[]) => {
-  const addresses = tokens.map(token => token.address.toLowerCase());
-  return new Set(addresses).size === addresses.length;
+const tokensDir = './src/tokens';
+
+const ajv = new Ajv();
+addFormats(ajv);
+
+const parseTokens = (): TokenInfo[] => {
+  const tokenList: TokenInfo[] = [];
+
+  const tokenFolders = fs.readdirSync(tokensDir);
+
+  tokenFolders.forEach(folder => {
+    const metadataPath = path.join(tokensDir, folder, 'metadata.json');
+
+    if (fs.existsSync(metadataPath)) {
+      const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf-8'));
+      tokenList.push(metadata);
+    }
+  });
+
+  return tokenList;
 };
 
-(async () => {
-  const ajv = new Ajv();
-  addFormats(ajv);
+const validateList = async (tokens: TokenInfo[]) => {
+  const tokenList: TokenList = JSON.parse(
+    await readfs.readFile(tokenListPath, 'utf8')
+  );
 
-  try {
-    const schema = JSON.parse(await fs.readFile(schemaPath, 'utf8'));
-    const validate = ajv.compile(schema);
-    const tokenList: TokenList = JSON.parse(
-      await fs.readFile(tokenListPath, 'utf8')
-    );
+  const tokenListWithUpdated = {
+    ...tokenList,
+    tokens,
+  };
 
-    const valid = validate(tokenList);
-    const isUnique = validateUniqueAddresses(tokenList.tokens);
-    if (!valid || !isUnique) {
-      console.error(
-        'Validation failed:',
-        validate.errors,
-        'is unique',
-        isUnique
-      );
-      process.exit(1);
-    } else {
-      console.log('Validation successful!');
+  const schema = JSON.parse(await readfs.readFile(schemaPath, 'utf8'));
+  const validate = ajv.compile(schema);
+  const valid = validate(tokenListWithUpdated);
+  console.log(`[INFO] IsValid: ${valid}. \n Errors ${validate.errors}`);
+  return valid;
+};
+
+const checkForDuplicates = (tokenList: TokenInfo[]): boolean => {
+  const seenAddresses: Set<string> = new Set();
+
+  for (const token of tokenList) {
+    if (seenAddresses.has(token.address)) {
+      return true;
     }
-  } catch (error) {
-    console.error('Error during validation:', error);
-    process.exit(1);
+    seenAddresses.add(token.address);
   }
-})();
+
+  return false;
+};
+
+const validateTokens = async () => {
+  const currentTokenList = parseTokens();
+  const isValid = await validateList(currentTokenList);
+  if (!isValid) process.exit(1);
+
+  const hasDuplicates = checkForDuplicates(currentTokenList);
+
+  if (hasDuplicates) {
+    console.log('There are duplicate tokens in the list.');
+    process.exit(1);
+  } else {
+    console.log('No duplicates found.');
+  }
+};
+
+validateTokens();

@@ -51,5 +51,6 @@
     "tslib": "^2.0.0",
     "tsx": "^4.19.2",
     "typescript": "^4.3.5"
-  }
+  },
+  "dependencies": {}
 }
