@@ -1,4 +1,4 @@
-name: Upgrade Version After Merge
+name: Merge tokens and upgrade version
 
 on:
   pull_request:
@@ -30,10 +30,10 @@ jobs:
           echo "Fetching token-list.json from previous commit:"
           git show HEAD~1:src/token-list.json > src/base-token-list.json
 
-      - name: Calculate Version Upgrade
+      - name: Merge tokens and upgrade version
         run: yarn versionUpgrade
 
-      - name: Commit and Push Version Update
+      - name: Commit and Push Update
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
