@@ -1,14 +1,14 @@
 {
   "name": "Sonic Bitfinity token list",
-  "timestamp": "2024-12-23T13:53:34.268Z",
+  "timestamp": "2024-12-23T14:00:14.507Z",
   "version": {
-    "major": 2,
+    "major": 3,
     "minor": 0,
     "patch": 0
   },
   "tokens": [
     {
-      "address": "0x600717ad96d63fbde59f7aa0555ba1575ee54d8f",
+      "address": "0x600717ad96d63fbde59f7aa0555ba1575ee54d8e",
       "decimals": 8,
       "name": "Boom",
       "symbol": "BOOM",
