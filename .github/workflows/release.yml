@@ -1,7 +1,6 @@
 name: Merge tokens and upgrade version
 
 on:
-  merge_group:
   pull_request:
     types:
       - closed
