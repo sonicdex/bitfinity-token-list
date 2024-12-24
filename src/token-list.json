@@ -3,17 +3,10 @@
   "timestamp": "2024-12-24T13:34:29.261Z",
   "version": {
     "major": 1,
-    "minor": 1,
+    "minor": 0,
     "patch": 0
   },
   "tokens": [
-    {
-      "address": "0x491016bf872d35a798c601d53442775c621bf91b",
-      "decimals": 8,
-      "name": "Sonic2",
-      "symbol": "SONIC2",
-      "logoURI": "https://cdn.sonic.ooo/v3/token_images/0x491016bf872d35a798c601d53442775c621bf91a.webp"
-    },
     {
       "address": "0x51ccde9ca75d95bb55ece1775fcbff91324b18a6",
       "decimals": 8,
@@ -26,13 +19,6 @@
       "decimals": 8,
       "name": "Sonic",
       "symbol": "SONIC",
-      "logoURI": "https://cdn.sonic.ooo/v3/token_images/0x491016bf872d35a798c601d53442775c621bf91a.webp"
-    },
-    {
-      "address": "0x491016bf872d35a798c601d53442775c621bf91e",
-      "decimals": 8,
-      "name": "Sonic1",
-      "symbol": "SONIC1",
       "logoURI": "https://cdn.sonic.ooo/v3/token_images/0x491016bf872d35a798c601d53442775c621bf91a.webp"
     }
   ]
